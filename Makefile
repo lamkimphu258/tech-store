@@ -1,8 +1,11 @@
 up:
-	docker-compose up -d
+	./vendor/bin/sail up -d
 
 down:
-	docker-compose down
+	./vendor/bin/sail down
+
+build:
+	docker-compose build
 
 restart:
 	$(MAKE) down
@@ -23,3 +26,11 @@ npm-watch:
 npx:
 	docker-compose exec app
 	npx $(cmd)
+
+artisan-run:
+	docker-compose exec app
+	php artisan $(cmd)
+
+reseed:
+	$(MAKE) artisan-run cmd=migrate:refresh
+	$(MAKE) artisan-run cmd=db:seed
