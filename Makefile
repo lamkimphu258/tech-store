@@ -11,6 +11,10 @@ restart:
 	$(MAKE) down
 	$(MAKE) up
 
+composer-require:
+	docker-compose exec app
+	composer require $(pkg)
+
 npm-install:
 	docker-compose exec app
 	npm install $(pkg)
@@ -34,3 +38,7 @@ artisan-run:
 reseed:
 	$(MAKE) artisan-run cmd=migrate:refresh
 	$(MAKE) artisan-run cmd=db:seed
+
+generate-coverage:
+	docker-compose exec app
+	./vendor/bin/phpunit --coverage-html reports/
