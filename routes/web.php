@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('/')->group(function() {
+    Route::get('/', function () {
+        return view('homepage');
+    })->name('homepage');
+
+    Route::get('/shopping-cart', function() {
+        return view('shopping-cart');
+    })->name('shopping-cart-page');
+
+    Route::get('/my-order', function() {
+        return view('my-order');
+    })->name('my-order-page');
 });
