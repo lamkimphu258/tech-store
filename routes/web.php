@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,16 +14,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('/')->group(function() {
-    Route::get('/', function () {
-        return view('homepage');
-    })->name('homepage');
-
-    Route::get('/shopping-cart', function() {
+Route::prefix('/')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])
+        ->name('home-page');
+    Route::get('/shopping-cart', function () {
         return view('shopping-cart');
     })->name('shopping-cart-page');
+    Route::get('/my-order', function () {
+        return view('my-orders');
+    })->name('my-orders-page');
 
-    Route::get('/my-order', function() {
-        return view('my-order');
-    })->name('my-order-page');
+    Route::get('/smartphones', function () {
+        return view('smartphones');
+    })->name('smartphones-page');
+    Route::get('/tablets', function () {
+        return view('tablets');
+    })->name('tablets-page');
+    Route::get('/laptops', function () {
+        return view('laptops');
+    })->name('laptops-page');
+    Route::get('/pcs', function () {
+        return view('pcs');
+    })->name('pcs-page');
+    Route::get('/accessories', function () {
+        return view('accessories');
+    })->name('accessories-page');
 });

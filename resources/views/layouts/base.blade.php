@@ -10,9 +10,11 @@
     <title>@yield('title') - Tech Store</title>
 </head>
 <body>
-<div class="flex flex-col h-screen justify-between">
+<div class="flex flex-col h-screen justify-between bg-gray-200">
     @include('partials.navbar')
-    @yield('content')
+    <div class="container-xl mx-auto">
+        @yield('content')
+    </div>
     @include('partials.footer')
 </div>
 </body>

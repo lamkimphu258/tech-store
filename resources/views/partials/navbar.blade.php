@@ -1,7 +1,7 @@
 <navbar class="flex flex-row text-white items-center justify-between py-3">
     <div class="navbar-brand flex flex-row ml-2 justify-center items-center">
         <i class="fas fa-store mr-3 text-4xl"></i>
-        <a href="{{ route('homepage') }}">
+        <a href="{{ route('home-page') }}">
             <h1>Tech Store</h1>
         </a>
     </div>
@@ -19,7 +19,7 @@
             <i class="fas fa-shopping-cart fa-2x mr-2"></i>
             <h2>Shopping Cart</h2>
         </a>
-        <a href="{{ route('my-order-page') }}">
+        <a href="{{ route('my-orders-page') }}">
             <h2 class="mr-2">My Order</h2>
         </a>
     </div>

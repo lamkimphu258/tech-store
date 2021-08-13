@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
-@section('title', 'Homepage')
+@section('title', 'Laptops')
 
 @section('content')
-    <h1>Welcome to app</h1>
+    <h1>Laptops</h1>
 @endsection
