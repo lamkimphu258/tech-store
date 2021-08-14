@@ -31891,6 +31891,11 @@ h2 {
   color: #4a5568;
 }
 
+.sales-promotion {
+  width: 600px;
+  height: 256px;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

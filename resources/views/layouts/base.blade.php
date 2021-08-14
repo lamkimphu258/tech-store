@@ -12,7 +12,7 @@
 <body>
 <div class="flex flex-col h-screen justify-between bg-gray-200">
     @include('partials.navbar')
-    <div class="container-xl mx-auto">
+    <div class="container-2xl mx-auto">
         @yield('content')
     </div>
     @include('partials.footer')
