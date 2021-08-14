@@ -4,7 +4,9 @@ namespace Tests\Unit\Controllers;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Repository\CategoryRepository;
+use App\Http\Repository\ProductRepository;
 use App\Http\Repository\SalesPromotionRepository;
+use App\Http\Services\HomeService;
 use Mockery\MockInterface;
 use Tests\TestCase;
 
@@ -12,17 +14,15 @@ class HomeControllerTest extends TestCase
 {
     public function testIndex()
     {
-        $categoryRepository = $this->mock(CategoryRepository::class, function (MockInterface $mock) {
-            $mock->shouldReceive('findAll')->once()->andReturn();
+        $homeService = $this->mock(HomeService::class, function(MockInterface $mock) {
+            $mock->shouldReceive('getCategories')->once()->andReturn();
+            $mock->shouldReceive('getSalesPromotion')->once()->andReturn();
+            $mock->shouldReceive('getBestSellers')->once()->andReturn();
         });
 
-        $salesPromotionRepository = $this->mock(SalesPromotionRepository::class, function (MockInterface $mock) {
-            $mock->shouldReceive('getLatest')->once()->andReturn();
-        });
-
-        /** @var CategoryRepository $categoryRepository */
-        $homeController = new HomeController($categoryRepository, $salesPromotionRepository);
-        $response = $homeController->index();
+        /** @var HomeService $homeService */
+        $homeController = new HomeController();
+        $response = $homeController->index($homeService);
 
         $this->assertEquals('home', $response->name());
     }

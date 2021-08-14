@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Http\Enums\CategoryName;
 use App\Http\Repository\CategoryRepository;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
@@ -10,8 +11,6 @@ use Illuminate\Support\Str;
 
 class CategorySeeder extends Seeder
 {
-    public const CATEGORIES = ['Smartphones', 'Tablets', 'Laptops', 'PCs', 'Accessories'];
-
     public function __construct(protected CategoryRepository $categoryRepository)
     {
     }
@@ -23,7 +22,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        foreach (self::CATEGORIES as $category) {
+        foreach (CategoryName::all() as $category) {
             $this->categoryRepository->save($category);
         }
     }

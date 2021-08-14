@@ -19,10 +19,9 @@ class RateSeeder extends Seeder
      */
     public function run()
     {
-        $rates = range(0, 5, 0.5);
+        $rates = range(1, 5);
 
         foreach ($rates as $rate) {
-            dump($rate);
             $this->rateRepository->save($rate);
         }
     }

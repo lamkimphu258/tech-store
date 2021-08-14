@@ -31871,8 +31871,33 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-navbar, footer {
+navbar, footer, .best-seller-banner {
   background: var(--primary-color);
+}
+
+.best-sellers {
+  width: 1400px;
+}
+
+.rating-star {
+  color: var(--primary-color);
+}
+
+.product {
+  width: 280px;
+  height: 450px;
+}
+
+.product-image {
+  width: 220px;
+  height: 200px;
+  position: relative;
+  top: 0px;
+  transition: top ease 0.5s;
+}
+
+.product-image:hover {
+  top: -10px;
 }
 
 h1 {

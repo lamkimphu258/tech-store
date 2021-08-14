@@ -26,17 +26,17 @@ Route::prefix('/')->group(function () {
 
     Route::get('/smartphones', function () {
         return view('smartphones');
-    })->name('smartphones-page');
+    })->name('smartphone-page');
     Route::get('/tablets', function () {
         return view('tablets');
-    })->name('tablets-page');
+    })->name('tablet-page');
     Route::get('/laptops', function () {
         return view('laptops');
-    })->name('laptops-page');
+    })->name('laptop-page');
     Route::get('/pcs', function () {
         return view('pcs');
-    })->name('pcs-page');
+    })->name('pc-page');
     Route::get('/accessories', function () {
         return view('accessories');
-    })->name('accessories-page');
+    })->name('accessory-page');
 });

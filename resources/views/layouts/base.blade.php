@@ -9,8 +9,8 @@
     <script src="https://kit.fontawesome.com/d6903fe8c7.js" crossorigin="anonymous"></script>
     <title>@yield('title') - Tech Store</title>
 </head>
-<body>
-<div class="flex flex-col h-screen justify-between bg-gray-200">
+<body class="bg-gray-200">
+<div class="flex flex-col h-screen justify-between">
     @include('partials.navbar')
     <div class="container-2xl mx-auto">
         @yield('content')

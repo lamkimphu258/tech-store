@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             SalesPromotionSeeder::class,
             RateSeeder::class,
+            ProductSeeder::class,
         ]);
     }
 }
