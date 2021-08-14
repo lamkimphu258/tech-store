@@ -24,8 +24,8 @@ class SalesPromotionFactory extends Factory
     {
         return [
             'id' => $this->faker->uuid,
-            'salesPromotionLink' => $this->faker->sentence,
-            'image' => $this->faker->image,
+            'sales_promotion_link' => $this->faker->sentence,
+            'image' => $this->faker->sentence,
         ];
     }
 }

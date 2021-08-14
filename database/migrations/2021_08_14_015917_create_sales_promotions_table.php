@@ -14,8 +14,8 @@ class CreateSalesPromotionsTable extends Migration
     public function up()
     {
         Schema::create('sales_promotions', function (Blueprint $table) {
-            $table->uuid('id');
-            $table->string('salesPromotionLink');
+            $table->uuid('id')->unique();
+            $table->string('sales_promotion_link');
             $table->string('image');
             $table->timestamps();
         });

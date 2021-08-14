@@ -4,6 +4,7 @@ namespace Tests\Unit\Controllers;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Repository\CategoryRepository;
+use App\Http\Repository\ProductRepository;
 use App\Http\Repository\SalesPromotionRepository;
 use Mockery\MockInterface;
 use Tests\TestCase;
@@ -20,8 +21,18 @@ class HomeControllerTest extends TestCase
             $mock->shouldReceive('getLatest')->once()->andReturn();
         });
 
+        $productRepository = $this->mock(ProductRepository::class, function(MockInterface $mock) {
+           $mock->shouldReceive('getBestSeller')->times(5)->andReturn();
+        });
+
         /** @var CategoryRepository $categoryRepository */
-        $homeController = new HomeController($categoryRepository, $salesPromotionRepository);
+        /** @var SalesPromotionRepository $salesPromotionRepository */
+        /** @var ProductRepository $productRepository */
+        $homeController = new HomeController(
+            $categoryRepository,
+            $salesPromotionRepository,
+            $productRepository
+        );
         $response = $homeController->index();
 
         $this->assertEquals('home', $response->name());

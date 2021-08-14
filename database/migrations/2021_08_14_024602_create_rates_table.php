@@ -14,8 +14,8 @@ class CreateRatesTable extends Migration
     public function up()
     {
         Schema::create('rates', function (Blueprint $table) {
-            $table->uuid('id');
-            $table->decimal('value', places: 1);
+            $table->uuid('id')->unique();
+            $table->integer('value');
             $table->timestamps();
         });
     }

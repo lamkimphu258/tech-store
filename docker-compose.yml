@@ -20,8 +20,8 @@ services:
         networks:
             - sail
         depends_on:
-            - pgsql
-    pgsql:
+            - db
+    db:
         image: 'postgres:13'
         ports:
             - '${FORWARD_DB_PORT:-5432}:5432'
