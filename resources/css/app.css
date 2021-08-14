@@ -25,3 +25,8 @@ h2 {
 .repo:hover {
     color: #4a5568;
 }
+
+.sales-promotion {
+    width: 600px;
+    height: 256px;
+}
