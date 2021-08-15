@@ -29,7 +29,7 @@ class CategoryName
 
     public static function plural(string $name): string
     {
-        $plurals = [
+        $plural = [
             self::SMARTPHONE => self::SMARTPHONES,
             self::TABLET => self::TABLETS,
             self::LAPTOP => self::LAPTOPS,
@@ -37,6 +37,19 @@ class CategoryName
             self::ACCESSORY => self::ACCESSORIES,
         ];
 
-        return $plurals[$name];
+        return $plural[$name];
+    }
+
+    public static function singular(string $name): string
+    {
+        $singular = [
+            self::SMARTPHONES => self::SMARTPHONE,
+            self::TABLETS => self::TABLET,
+            self::LAPTOPS => self::LAPTOP,
+            self::PCS => self::PC,
+            self::ACCESSORIES => self::ACCESSORY,
+        ];
+
+        return $singular[$name];
     }
 }

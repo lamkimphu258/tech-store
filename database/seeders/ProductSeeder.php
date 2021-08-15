@@ -30,13 +30,13 @@ class ProductSeeder extends Seeder
         $rates = $this->rateRepository->findAll()->toArray();
         $categories = $this->categoryRepository->findAll()->toArray();
 
-        for ($i = 0; $i <= 100; $i++) {
+        for ($i = 0; $i <= 1000; $i++) {
             $product = new Product();
             $product->id = $faker->uuid;
             $product->name = $faker->company;
             $product->thumbnail = $faker->sentence;
             $product->quantity_sold = $faker->randomDigitNotNull * $faker->randomDigitNotNull;
-            $product->price = 9_999_999;
+            $product->price = ($faker->randomDigitNotNull + 1) * 1_000_000;
             $product->category_id = $faker->randomElement($categories)->id;
             $product->rate_id = $faker->randomElement($rates)->id;
 

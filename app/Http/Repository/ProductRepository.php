@@ -3,6 +3,7 @@
 namespace App\Http\Repository;
 
 use App\Models\Product;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -45,8 +46,45 @@ class ProductRepository
             )
             ->where('categories.name', '=', $categoryName)
             ->orderBy(self::TABLE.'.quantity_sold', 'desc')
-            ->select([self::TABLE.'.name', self::TABLE.'.thumbnail', self::TABLE.'.price', 'rates.value as rates_value'])
+            ->select(
+                [
+                    self::TABLE.'.name',
+                    self::TABLE.'.thumbnail',
+                    self::TABLE.'.price',
+                    'rates.value as rates_value',
+                ]
+            )
             ->limit(5)
             ->get();
+    }
+
+    /**
+     * @param string $category
+     */
+    public function getByCategory(string $category)
+    {
+        return DB::table(self::TABLE)
+            ->join(
+                'categories',
+                self::TABLE.'.category_id',
+                '=',
+                'categories.id'
+            )
+            ->join(
+                'rates',
+                self::TABLE.'.rate_id',
+                '=',
+                'rates.id'
+            )
+            ->where('categories.name', '=', $category)
+            ->select(
+                [
+                    self::TABLE.'.name',
+                    self::TABLE.'.thumbnail',
+                    self::TABLE.'.price',
+                    'rates.value as rates_value',
+                ]
+            )
+            ->paginate(20);
     }
 }

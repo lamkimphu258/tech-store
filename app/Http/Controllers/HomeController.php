@@ -28,7 +28,7 @@ class HomeController extends Controller
     {
         $categories = $homeService->getCategories();
         $salesPromotion = $homeService->getSalesPromotion();
-        $bestSellers = $homeService->getBestSellers();
+        $bestSellers = $homeService->getBestSellerProducts();
 
         return view('home', [
             'categories' => $categories,

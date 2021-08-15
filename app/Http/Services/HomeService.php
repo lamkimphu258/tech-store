@@ -38,7 +38,7 @@ class HomeService
     /**
      * @return array
      */
-    public function getBestSellers(): array
+    public function getBestSellerProducts(): array
     {
         $bestSellers = [];
         foreach (CategoryName::all() as $category) {

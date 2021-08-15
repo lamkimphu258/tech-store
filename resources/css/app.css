@@ -1,21 +1,35 @@
-:root {
-    --primary-color: #BC5252;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-navbar, footer, .best-seller-banner {
+:root {
+    --primary-color: #BC5252;
+}
+
+navbar,
+footer,
+.best-seller-banner {
     background: var(--primary-color);
 }
 
-.best-sellers {
+.products-row, .best-seller-banner {
     width: 1400px;
 }
 
-.rating-star {
+.rating-star,
+.current-page {
     color: var(--primary-color);
+}
+
+.current-page {
+    text-decoration: underline;
+}
+
+.not-current-page:hover,
+.next-page:hover,
+.previous-page:hover {
+    background-color: var(--primary-color);
+    color: white;
 }
 
 .product {

@@ -75,6 +75,6 @@ class HomeServiceTest extends TestCase
             $salesPromotionRepository,
             $productRepository
         );
-        $homeService->getBestSellers();
+        $homeService->getBestSellerProducts();
     }
 }

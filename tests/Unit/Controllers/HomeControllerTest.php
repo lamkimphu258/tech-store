@@ -17,7 +17,7 @@ class HomeControllerTest extends TestCase
         $homeService = $this->mock(HomeService::class, function(MockInterface $mock) {
             $mock->shouldReceive('getCategories')->once()->andReturn();
             $mock->shouldReceive('getSalesPromotion')->once()->andReturn();
-            $mock->shouldReceive('getBestSellers')->once()->andReturn();
+            $mock->shouldReceive('getBestSellerProducts')->once()->andReturn();
         });
 
         /** @var HomeService $homeService */
