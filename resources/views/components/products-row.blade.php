@@ -2,7 +2,7 @@
     @foreach ($products as $product)
         <div class="flex flex-col border product p-6">
             <img class="product-image text-center"
-                 src="{{ asset('images/'. strtolower(\App\Http\Enums\CategoryName::plural($categoryName)).'/'. strtolower($categoryName) .'.jpg') }}"
+                 src="{{ secure_asset('images/'. strtolower(\App\Http\Enums\CategoryName::plural($categoryName)).'/'. strtolower($categoryName) .'.jpg') }}"
                  alt="Product Image">
             <p class="my-4">{{ $product->name }}</p>
             <p class="mb-4">{{ number_format($product->price, thousands_separator: ".") }} vnd</p>

@@ -13,7 +13,7 @@
                 @endforeach
             </div>
             <img class="sales-promotion rounded-xl flex-grow"
-                 src="{{ asset('images/salesPromotions/salesPromotion.png') }}" alt="Sales Promotion">
+                 src="{{ secure_asset('images/salesPromotions/salesPromotion.png') }}" alt="Sales Promotion">
         </div>
         <div class="best-sellers flex flex-col">
             @foreach ($bestSellers as $categoryName => $products)
