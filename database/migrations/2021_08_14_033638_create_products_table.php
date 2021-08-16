@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('thumbnail');
             $table->integer('quantity_sold');
             $table->float('price');
+            $table->dateTime('debuted_at');
             $table->foreignUuid('rate_id');
             $table->foreignUuid('category_id');
             $table->timestamps();

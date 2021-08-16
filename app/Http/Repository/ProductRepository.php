@@ -3,7 +3,7 @@
 namespace App\Http\Repository;
 
 use App\Models\Product;
-use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -11,6 +11,8 @@ use Illuminate\Support\Str;
 class ProductRepository
 {
     public const TABLE = 'products';
+    public const SORT_COLUMN = 'name';
+    public const DIRECTION = 'asc';
 
     public function save(Product $product)
     {
@@ -20,6 +22,7 @@ class ProductRepository
             'thumbnail' => $product->thumbnail,
             'quantity_sold' => $product->quantity_sold,
             'price' => $product->price,
+            'debuted_at' => $product->debuted_at,
             'category_id' => $product->category_id,
             'rate_id' => $product->rate_id,
         ]);
@@ -60,9 +63,15 @@ class ProductRepository
 
     /**
      * @param string $category
+     * @param string|null $sortColumn
+     * @param string|null $direction
+     * @return LengthAwarePaginator
      */
-    public function getByCategory(string $category)
-    {
+    public function getByCategory(
+        string $category,
+        ?string $sortColumn = self::SORT_COLUMN,
+        ?string $direction = self::DIRECTION
+    ): LengthAwarePaginator {
         return DB::table(self::TABLE)
             ->join(
                 'categories',
@@ -85,6 +94,7 @@ class ProductRepository
                     'rates.value as rates_value',
                 ]
             )
+            ->orderBy($sortColumn, $direction)
             ->paginate(20);
     }
 }
