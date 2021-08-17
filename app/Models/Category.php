@@ -9,6 +9,10 @@ class Category extends Model
 {
     use HasFactory;
 
+    public const TABLE_NAME = 'category';
+
+    protected $table = self::TABLE_NAME;
+
     public $incrementing = false;
 
     protected $keyType = 'string';

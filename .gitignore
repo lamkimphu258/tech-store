@@ -15,3 +15,5 @@ yarn-error.log
 /.vscode
 /storage/logs/*
 /public/tmp/*
+docker-compose.yml
+Makefile

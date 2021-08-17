@@ -2,7 +2,7 @@
 
 namespace App\Http\Services;
 
-use App\Http\Enums\CategoryName;
+use App\Http\Enums\Categories\CategoryName;
 use App\Http\Repository\CategoryRepository;
 use App\Http\Repository\ProductRepository;
 use App\Http\Repository\SalesPromotionRepository;

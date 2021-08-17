@@ -3,6 +3,8 @@
 namespace App\Http\Repository;
 
 
+use App\Http\Enums\Rates\RateColumn;
+use App\Models\Rate;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -16,9 +18,9 @@ class RateRepository
      */
     public function save(float $rate)
     {
-        DB::table('rates')->insert([
-            'id' => Str::uuid(),
-            'value' => $rate,
+        DB::table(Rate::TABLE_NAME)->insert([
+            RateColumn::ID => Str::uuid(),
+            RateColumn::VALUE => $rate,
         ]);
     }
 
@@ -27,6 +29,6 @@ class RateRepository
      */
     public function findAll(): Collection
     {
-        return DB::table('rates')->get();
+        return DB::table(Rate::TABLE_NAME)->get();
     }
 }

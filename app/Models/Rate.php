@@ -9,6 +9,10 @@ class Rate extends Model
 {
     use HasFactory;
 
+    public const TABLE_NAME = 'rate';
+
+    protected $table = self::TABLE_NAME;
+
     public $incrementing = false;
 
     protected $keyType = 'string';
