@@ -15,14 +15,12 @@ class ProductController extends Controller
     ) {
     }
 
-    public function getProductByCategory(Request $request): Factory|View|Application
+    public function getProductByCategory(Request $request, string $categoryName): Factory|View|Application
     {
-        $categoryName = $request->get('category');
         $page = $request->get('page');
         $sort = $request->get('sort');
 
         $products = $this->productService->getProductByCategory($categoryName, $sort);
-        $products->appends(['category' => $categoryName]);
 
         return view('products-by-category', [
             'products' => $products,
