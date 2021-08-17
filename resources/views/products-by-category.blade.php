@@ -9,7 +9,6 @@
             method="GET"
             class="flex flex-row justify-end items-center mb-6">
             <label for="sort" class="mr-2">Sort by:</label>
-            <input type="hidden" name="category" value="{{ $categoryName }}">
             <input type="hidden" name="page" value="{{ $page }}">
             <select name="sort" class="mr-6 p-2 bg-white" onchange="this.form.submit()">
                 <option value=""></option>

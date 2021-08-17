@@ -24,5 +24,13 @@ Route::get('/my-order', function () {
     return view('my-orders');
 })->name('my-orders-page');
 
-Route::get('/products', [ProductController::class, 'getProductByCategory'])
-    ->name('products-by-category-page');
+Route::prefix('/categories')->group(
+    function() {
+        Route::prefix('/{categoryName}')->group(function() {
+            Route::prefix('/products')->group(function() {
+                Route::get('', [ProductController::class, 'getProductByCategory'])
+                    ->name('products-by-category-page');
+            });
+        });
+    }
+);
