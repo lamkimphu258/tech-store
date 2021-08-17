@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Http\Enums\SalesPromotions\SalesPromotionColumn;
 use App\Models\SalesPromotion;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 class SalesPromotionFactory extends Factory
 {
@@ -23,9 +23,9 @@ class SalesPromotionFactory extends Factory
     public function definition()
     {
         return [
-            'id' => $this->faker->uuid,
-            'sales_promotion_link' => $this->faker->sentence,
-            'image' => $this->faker->sentence,
+            SalesPromotionColumn::ID => $this->faker->uuid,
+            SalesPromotionColumn::SALES_PROMOTION_LINK => $this->faker->sentence,
+            SalesPromotionColumn::IMAGE => $this->faker->sentence,
         ];
     }
 }

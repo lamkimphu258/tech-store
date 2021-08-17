@@ -9,6 +9,10 @@ class Product extends Model
 {
     use HasFactory;
 
+    public const TABLE_NAME = 'product';
+
+    protected $table = self::TABLE_NAME;
+
     public $incrementing = false;
 
     protected $keyType = 'string';

@@ -2,6 +2,8 @@
 
 namespace App\Http\Services;
 
+use App\Http\Enums\Products\ProductColumn;
+use App\Http\Enums\SortDirection;
 use App\Http\Repository\ProductRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
@@ -17,8 +19,10 @@ class ProductService
      * @param string|null $sort
      * @return LengthAwarePaginator
      */
-    public function getProductByCategory(string $category, ?string $sort = ''): LengthAwarePaginator
-    {
+    public function getProductByCategory(
+        string $category,
+        ?string $sort = ''
+    ): LengthAwarePaginator {
         if (empty($sort)) {
             return $this->productRepository->getByCategory($category);
         }
@@ -26,15 +30,15 @@ class ProductService
         $sortColumn = '';
         $direction = '';
         if (str_contains($sort, 'price')) {
-            $sortColumn = 'price';
+            $sortColumn = ProductColumn::PRICE;
         } elseif (str_contains($sort, 'date')) {
-            $sortColumn = 'debuted_at';
+            $sortColumn = ProductColumn::DEBUTED_AT;
         }
 
         if (str_contains($sort, 'newest') || str_contains($sort, 'highest')) {
-            $direction = 'desc';
+            $direction = SortDirection::DESC;
         } elseif (str_contains($sort, 'oldest') || str_contains($sort, 'lowest')) {
-            $direction = 'asc';
+            $direction = SortDirection::ASC;
         }
 
         return $this->productRepository->getByCategory($category, $sortColumn, $direction);

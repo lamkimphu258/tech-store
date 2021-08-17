@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Enums\Categories\CategoryColumn;
+use App\Models\Category;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,9 +15,9 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->uuid('id')->unique();
-            $table->string('name', 20);
+        Schema::create(Category::TABLE_NAME, function (Blueprint $table) {
+            $table->uuid(CategoryColumn::ID)->unique();
+            $table->string(CategoryColumn::NAME, 20);
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists(Category::TABLE_NAME);
     }
 }

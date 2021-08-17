@@ -2,29 +2,40 @@
 
 namespace App\Http\Repository;
 
+use App\Http\Enums\Categories\CategoryColumn;
+use App\Http\Enums\Products\ProductColumn;
+use App\Http\Enums\Rates\RateColumn;
+use App\Http\Enums\SortDirection;
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\Rate;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ProductRepository
 {
-    public const TABLE = 'products';
-    public const SORT_COLUMN = 'name';
-    public const DIRECTION = 'asc';
+    public const DEFAULT_SORT_COLUMN = 'name';
+
+    public const DEFAULT_DIRECTION = 'asc';
+
+    public const NUMBER_OF_PRODUCTS_PER_PAGE = 20;
+
+    public const NUMBER_OF_BEST_SELLER_PRODUCTS = 5;
 
     public function save(Product $product)
     {
-        DB::table(self::TABLE)->insert([
-            'id' => Str::uuid(),
-            'name' => $product->name,
-            'thumbnail' => $product->thumbnail,
-            'quantity_sold' => $product->quantity_sold,
-            'price' => $product->price,
-            'debuted_at' => $product->debuted_at,
-            'category_id' => $product->category_id,
-            'rate_id' => $product->rate_id,
+        DB::table(Product::TABLE_NAME)->insert([
+            ProductColumn::ID => Str::uuid(),
+            ProductColumn::NAME => $product->name,
+            ProductColumn::THUMBNAIL => $product->thumbnail,
+            ProductColumn::QUANTITY_SOLD => $product->quantity_sold,
+            ProductColumn::PRICE => $product->price,
+            ProductColumn::DEBUTED_AT => $product->debuted_at,
+            ProductColumn::CATEGORY_ID => $product->category_id,
+            ProductColumn::RATE_ID => $product->rate_id,
         ]);
     }
 
@@ -34,30 +45,37 @@ class ProductRepository
      */
     public function getBestSeller(string $categoryName): Collection
     {
-        return DB::table(self::TABLE)
+        return DB::table(Product::TABLE_NAME)
             ->join(
-                'categories',
-                self::TABLE.'.category_id',
+                Category::TABLE_NAME,
+                Product::TABLE_NAME.'.'.ProductColumn::CATEGORY_ID,
                 '=',
-                'categories.id'
+                Category::TABLE_NAME.'.'.CategoryColumn::ID
             )
             ->join(
-                'rates',
-                self::TABLE.'.rate_id',
+                Rate::TABLE_NAME,
+                Product::TABLE_NAME.'.'.ProductColumn::RATE_ID,
                 '=',
-                'rates.id'
+                Rate::TABLE_NAME.'.'.RateColumn::ID
             )
-            ->where('categories.name', '=', $categoryName)
-            ->orderBy(self::TABLE.'.quantity_sold', 'desc')
+            ->where(
+                Category::TABLE_NAME.'.'.CategoryColumn::NAME,
+                '=',
+                $categoryName
+            )
+            ->orderBy(
+                Product::TABLE_NAME.'.'.ProductColumn::QUANTITY_SOLD,
+                SortDirection::DESC
+            )
             ->select(
                 [
-                    self::TABLE.'.name',
-                    self::TABLE.'.thumbnail',
-                    self::TABLE.'.price',
-                    'rates.value as rates_value',
+                    Product::TABLE_NAME.'.'.ProductColumn::NAME,
+                    Product::TABLE_NAME.'.'.ProductColumn::THUMBNAIL,
+                    Product::TABLE_NAME.'.'.ProductColumn::PRICE,
+                    Rate::TABLE_NAME.'.'.RateColumn::VALUE.' as rates_value',
                 ]
             )
-            ->limit(5)
+            ->limit(self::NUMBER_OF_BEST_SELLER_PRODUCTS)
             ->get();
     }
 
@@ -69,32 +87,36 @@ class ProductRepository
      */
     public function getByCategory(
         string $category,
-        ?string $sortColumn = self::SORT_COLUMN,
-        ?string $direction = self::DIRECTION
+        ?string $sortColumn = self::DEFAULT_SORT_COLUMN,
+        ?string $direction = self::DEFAULT_DIRECTION
     ): LengthAwarePaginator {
-        return DB::table(self::TABLE)
+        return DB::table(Product::TABLE_NAME)
             ->join(
-                'categories',
-                self::TABLE.'.category_id',
+                Category::TABLE_NAME,
+                Product::TABLE_NAME.'.'.ProductColumn::CATEGORY_ID,
                 '=',
-                'categories.id'
+                Category::TABLE_NAME.'.'.CategoryColumn::ID
             )
             ->join(
-                'rates',
-                self::TABLE.'.rate_id',
+                Rate::TABLE_NAME,
+                Product::TABLE_NAME.'.'.ProductColumn::RATE_ID,
                 '=',
-                'rates.id'
+                Rate::TABLE_NAME.'.'.RateColumn::ID
             )
-            ->where('categories.name', '=', $category)
+            ->where(
+                Category::TABLE_NAME.'.'.CategoryColumn::NAME,
+                '=',
+                $category
+            )
             ->select(
                 [
-                    self::TABLE.'.name',
-                    self::TABLE.'.thumbnail',
-                    self::TABLE.'.price',
-                    'rates.value as rates_value',
+                    Product::TABLE_NAME.'.'.ProductColumn::NAME,
+                    Product::TABLE_NAME.'.'.ProductColumn::THUMBNAIL,
+                    Product::TABLE_NAME.'.'.ProductColumn::PRICE,
+                    Rate::TABLE_NAME.'.'.RateColumn::VALUE.' as rates_value',
                 ]
             )
-            ->orderBy($sortColumn, $direction)
-            ->paginate(20);
+            ->orderBy(Product::TABLE_NAME.'.'.$sortColumn, $direction)
+            ->paginate(self::NUMBER_OF_PRODUCTS_PER_PAGE);
     }
 }

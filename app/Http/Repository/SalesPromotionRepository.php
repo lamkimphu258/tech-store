@@ -2,16 +2,16 @@
 
 namespace App\Http\Repository;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Query\Builder;
+use App\Http\Enums\SalesPromotions\SalesPromotionColumn;
+use App\Models\SalesPromotion;
 use Illuminate\Support\Facades\DB;
 
 class SalesPromotionRepository
 {
     public function getLatest()
     {
-        return DB::table('sales_promotions')
-            ->orderBy('created_at')
+        return DB::table(SalesPromotion::TABLE_NAME)
+            ->orderBy(SalesPromotionColumn::CREATED_AT)
             ->first();
     }
 }

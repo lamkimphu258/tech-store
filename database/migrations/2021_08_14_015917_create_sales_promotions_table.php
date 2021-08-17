@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Enums\SalesPromotions\SalesPromotionColumn;
+use App\Models\SalesPromotion;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,10 +15,10 @@ class CreateSalesPromotionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sales_promotions', function (Blueprint $table) {
-            $table->uuid('id')->unique();
-            $table->string('sales_promotion_link');
-            $table->string('image');
+        Schema::create(SalesPromotion::TABLE_NAME, function (Blueprint $table) {
+            $table->uuid(SalesPromotionColumn::ID)->unique();
+            $table->string(SalesPromotionColumn::SALES_PROMOTION_LINK);
+            $table->string(SalesPromotionColumn::IMAGE);
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateSalesPromotionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sales_promotions');
+        Schema::dropIfExists(SalesPromotion::TABLE_NAME);
     }
 }
