@@ -7,7 +7,7 @@
         <div class="header flex flex-row">
             <div class="sidebar flex flex-col border bg-white rounded-xl px-4 p-4 h-64 mr-6">
                 @foreach ($categories as $category)
-                    <a href="{{ route('products-by-category-page', ['category'=>$category->name, 'page' => 1]) }}">
+                    <a href="{{ route('products-by-category-page', ['categoryName'=>$category->name, 'page' => 1]) }}">
                         <h2>{{ ucwords(\App\Http\Enums\CategoryName::plural($category->name)) }}</h2>
                     </a>
                 @endforeach
