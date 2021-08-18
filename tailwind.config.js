@@ -6,7 +6,11 @@ module.exports = {
     ],
     darkMode: false, // or 'media' or 'class'
     theme: {
-        extend: {},
+        extend: {
+            gridTemplateColumns: {
+                'content': '100px minmax(auto, 1fr) 100px'
+            }
+        },
     },
     variants: {
         extend: {},
