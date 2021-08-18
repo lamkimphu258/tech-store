@@ -1,6 +1,6 @@
 <div class="products-row grid grid-cols-5 col-start-2 bg-white">
     @foreach ($products as $product)
-        <div class="flex flex-col border product p-6">
+        <div class="flex flex-col items-center border product p-6">
             <img class="product-image text-center"
                  src="{{ secure_asset('images/'. strtolower(\App\Http\Enums\Categories\CategoryName::plural($categoryName)).'/'. strtolower($categoryName) .'.jpg') }}"
                  alt="Product Image">
