@@ -1,4 +1,4 @@
-<div class="products-row flex flex-row flex-wrap justify-start bg-white">
+<div class="products-row grid grid-cols-5 col-start-2 bg-white">
     @foreach ($products as $product)
         <div class="flex flex-col border product p-6">
             <img class="product-image text-center"

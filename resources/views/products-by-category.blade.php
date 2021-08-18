@@ -3,7 +3,7 @@
 @section('title', ucwords($categoryName))
 
 @section('content')
-    <div class="filter">
+    <div class="filter col-start-2">
         <form
             action=""
             method="GET"
@@ -11,6 +11,7 @@
             <label for="sort" class="mr-2">Sort by:</label>
             <input type="hidden" name="page" value="{{ $page }}">
             <select name="sort" class="p-2 bg-white" onchange="this.form.submit()">
+                <option value=""></option>
                 <option value="newest-date">Newest To Oldest</option>
                 <option value="oldest-date">Oldest To Newest</option>
                 <option value="highest-price">Highest To Lowest Price</option>
@@ -19,7 +20,7 @@
         </form>
     </div>
     @include('components.products-row')
-    <div class="pagination mt-6">
+    <div class="pagination mt-6 col-start-2">
         {{ $products->links('components.custom-pagination') }}
     </div>
 @endsection

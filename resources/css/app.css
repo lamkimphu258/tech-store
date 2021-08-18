@@ -12,9 +12,9 @@ footer,
     background: var(--primary-color);
 }
 
-.products-row, .best-seller-banner {
-    width: 1400px;
-}
+/*.products-row, .best-seller-banner {*/
+/*    width: 1400px;*/
+/*}*/
 
 .rating-star,
 .current-page {
@@ -33,7 +33,6 @@ footer,
 }
 
 .product {
-    width: 280px;
     height: 450px;
 }
 
@@ -41,7 +40,7 @@ footer,
     width: 220px;
     height: 200px;
     position: relative;
-    top: 0px;
+    top: 0;
     transition: top ease 0.5s;
 }
 
