@@ -12,9 +12,11 @@
 <body class="bg-gray-200">
 <div class="flex flex-col h-screen justify-between">
     @include('partials.navbar')
-    <div class="container-2xl mx-auto my-10">
+{{--    <div class="container-2xl mx-auto my-10">--}}
+    <div class="grid grid-cols-content grid-rows-1 my-10">
         @yield('content')
     </div>
+{{--    </div>--}}
     @include('partials.footer')
 </div>
 </body>
