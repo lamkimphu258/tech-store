@@ -12,10 +12,6 @@ footer,
     background: var(--primary-color);
 }
 
-.products-row, .best-seller-banner {
-    width: 1400px;
-}
-
 .rating-star,
 .current-page {
     color: var(--primary-color);
@@ -33,7 +29,6 @@ footer,
 }
 
 .product {
-    width: 280px;
     height: 450px;
 }
 
@@ -41,7 +36,7 @@ footer,
     width: 220px;
     height: 200px;
     position: relative;
-    top: 0px;
+    top: 0;
     transition: top ease 0.5s;
 }
 
@@ -66,6 +61,5 @@ h2 {
 }
 
 .sales-promotion {
-    width: 600px;
     height: 256px;
 }

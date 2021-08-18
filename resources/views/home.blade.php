@@ -3,7 +3,7 @@
 @section('title', 'Homepage')
 
 @section('content')
-    <div class="content flex flex-col">
+    <div class="content col-start-2">
         <div class="header flex flex-row">
             <div class="sidebar flex flex-col border bg-white rounded-xl px-4 p-4 h-64 mr-6">
                 @foreach ($categories as $category)
